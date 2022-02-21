@@ -15,6 +15,7 @@ services:
 
   database:
     image: mysql:5.7
+    platform: linux/amd64
     container_name: mysql-3IWJANVIER
     ports :
       - "3306:3306"
