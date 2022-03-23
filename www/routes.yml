@@ -1,0 +1,15 @@
+/:
+  controller: Main
+  action: index
+
+/ajout-utilisateur:
+  controller: User
+  action: add
+
+/modifier-utilisateur:
+  controller: User
+  action: edit
+
+/tableau-de-bord:
+  controller: Admin
+  action: dashboard
