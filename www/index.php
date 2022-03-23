@@ -33,3 +33,27 @@ $action = $routes[$uri]["action"]; //index
 //au final on doit avoir le echo qui se lance
 
 
+if(!file_exists("Controller/".$controller.".class.php")){
+	die("Le fichier Controller/".$controller.".class.php nexiste pas");
+}
+include "Controller/".$controller.".class.php";
+
+
+
+//Instance dynamique
+if(!class_exists($controller)){
+	die("Le controller ".$controller." n'existe pas");
+}
+$object = new $controller();
+
+
+if(!method_exists($object, $action)){
+	die("L'action ".$action." n'existe pas");
+}
+$object->$action();
+
+
+
+
+
+

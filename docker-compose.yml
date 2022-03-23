@@ -2,7 +2,7 @@ version: '3'
 services:
   web:
     build: site
-    container_name: apache-3IWJANVIER
+    container_name: mvc-apache
     ports :
      - "80:80"
     volumes:
@@ -16,21 +16,21 @@ services:
   database:
     image: mysql:5.7
     platform: linux/amd64
-    container_name: mysql-3IWJANVIER
+    container_name: mvc-mysql
     ports :
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: mvcdocker2
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: mvcphp
+      MYSQL_ROOT_PASSWORD: mvcphp_pwd
+      MYSQL_USER: mvcphp_user
+      MYSQL_PASSWORD: mvcphp_pwd
     volumes:
-      - ./db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
     restart: always
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
-    container_name: phpmyadmin-3IWJANVIER
+    container_name: mvc-phpmyadmin
     depends_on:
       - database
     ports:
@@ -38,5 +38,7 @@ services:
     environment:
         - PMA_ARBITRARY=1
 
+volumes:
+  db_data:
       
       

@@ -2,6 +2,10 @@
   controller: Main
   action: index
 
+/login:
+  controller: Main
+  action: login
+
 /ajout-utilisateur:
   controller: User
   action: add

@@ -6,4 +6,9 @@ class Main{
 	{
 		echo "Afficher home";
 	}
+
+	public function login(): void
+	{
+		echo "Afficher login";
+	}
 }
