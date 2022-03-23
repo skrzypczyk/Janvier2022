@@ -1,5 +1,7 @@
 <?php
 
+namespace App;
+
 //récupérer ce que l'on a dans l'url
 //exemple http://localhost/ajouter-utilisateur
 //je dois récupérer "/ajout-utilisateur"
@@ -14,6 +16,12 @@ $uri = strtolower($requestExploded[0]); // /ajout-utilisateur
 // et contiendra le nom d'une classe et la methode à appeler
 // exemple : ajout-utilisateur ->   class User() et method add()
 
+require "Core\Routing.class.php";
+$routing = new Core\Routing();
+$routing->setAction();
+$routing->run();
+
+/*
 if(!file_exists("routes.yml")){
 	die("Fichier routes.yml introuvable");
 }
@@ -39,8 +47,11 @@ if(!file_exists("Controller/".$controller.".class.php")){
 include "Controller/".$controller.".class.php";
 
 
-
 //Instance dynamique
+// new User mais un new \App\Controller\User
+//Obligation d'écrire le chemin complet dans une instance dynamique
+$controller = "\\App\\Controller\\".$controller;
+
 if(!class_exists($controller)){
 	die("Le controller ".$controller." n'existe pas");
 }
@@ -52,6 +63,7 @@ if(!method_exists($object, $action)){
 }
 $object->$action();
 
+*/
 
 
 
