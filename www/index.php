@@ -2,6 +2,26 @@
 
 namespace App;
 
+
+
+
+
+spl_autoload_register(function ( $class ){
+	
+	$filename = str_replace("App\\", "", $class);
+	$filename = str_replace("\\", "/", $filename);
+	$filename =  $filename.".class.php";
+
+	if(file_exists($filename)){
+		require $filename;
+	}
+
+
+
+});
+
+
+
 //récupérer ce que l'on a dans l'url
 //exemple http://localhost/ajouter-utilisateur
 //je dois récupérer "/ajout-utilisateur"
@@ -16,12 +36,11 @@ $uri = strtolower($requestExploded[0]); // /ajout-utilisateur
 // et contiendra le nom d'une classe et la methode à appeler
 // exemple : ajout-utilisateur ->   class User() et method add()
 
-require "Core/Routing.class.php";
+
 $routing = new Core\Routing();
 $routing->setAction($uri);
 $routing->run();
 
 
-echo $routing->getUri("Admin", "dashboard");
 
 
