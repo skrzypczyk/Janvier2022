@@ -10,6 +10,14 @@ class User{
 	{
 
 		//template => front
+
+		$user = new User();
+		$user->setFirstname("Yves");
+		$user->setLastname("SKRZYPCZYK");
+		$user->setEmail("y.skrzypczyk@gmail.com");
+		$user->setPwd("Test1234");
+		$user->save();
+
 		
 		$v = new View("Auth/Register", "Front");
 		

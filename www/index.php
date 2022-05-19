@@ -2,18 +2,15 @@
 
 namespace App;
 
-
-
-
-
 spl_autoload_register(function ( $class ){
-	
+
+	//  App\Core\Routing -> Core/Routing.class.php
 	$filename = str_replace("App\\", "", $class);
 	$filename = str_replace("\\", "/", $filename);
 	$filename =  $filename.".class.php";
 
 	if(file_exists($filename)){
-		require $filename;
+		include $filename;
 	}
 
 

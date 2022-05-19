@@ -7,6 +7,7 @@ class View{
 
 	private $template;
 	private $view;
+	private $data = [];
 
 	public function __construct(String $view, String $template = "back")
 	{
@@ -37,8 +38,18 @@ class View{
 
 	}
 
+
+	public function assign(String $key, $value): void
+	{
+		$this->data[$key] = $value;
+	}
+
+
+
+
 	public function __destruct()
 	{
+		extract($this->data);
 		require $this->template;
 	}
 
