@@ -6,9 +6,9 @@
   controller: Main
   action: login
 
-/ajout-utilisateur:
+/s-inscrire:
   controller: User
-  action: add
+  action: register
 
 /modifier-utilisateur:
   controller: User
@@ -17,3 +17,8 @@
 /tableau-de-bord:
   controller: Admin
   action: dashboard
+
+
+/users:
+  controller: User
+  action: list

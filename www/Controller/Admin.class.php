@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Core\View;
+
 class Admin{
 
 	public function dashboard(): void
 	{
-		echo "Afficher dashboard";
+		$v = new View("Dashboard/Home");
 	}
 }

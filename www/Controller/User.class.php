@@ -2,11 +2,18 @@
 
 namespace App\Controller;
 
+use App\Core\View;
+
 class User{
 
-	public function add(): void
+	public function register(): void
 	{
-		echo "Afficher ajout user";
+
+		//template => front
+		
+		$v = new View("Auth/Register", "Front");
+		
+
 	}
 
 
@@ -14,4 +21,17 @@ class User{
 	{
 		echo "Afficher edit user";
 	}
+
+
+
+
+	public function list(): void
+	{
+		$v = new View("User/List", "Back");
+	}
+
 }
+
+
+
+

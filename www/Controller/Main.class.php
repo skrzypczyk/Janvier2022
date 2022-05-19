@@ -1,11 +1,13 @@
 <?php
 namespace App\Controller;
 
+use App\Core\View;
+
 class Main{
 
 	public function index(): void
 	{
-		echo "Afficher home";
+		$v = new View("Page/Home", "Front");
 	}
 
 	public function login(): void
