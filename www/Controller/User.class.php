@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Core\View;
+use App\Model\User as UserModel;
 
 class User{
 
@@ -11,7 +12,7 @@ class User{
 
 		//template => front
 
-		$user = new User();
+		$user = new UserModel();
 		$user->setFirstname("Yves");
 		$user->setLastname("SKRZYPCZYK");
 		$user->setEmail("y.skrzypczyk@gmail.com");
