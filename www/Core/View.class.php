@@ -44,6 +44,14 @@ class View{
 		$this->data[$key] = $value;
 	}
 
+	public function includeComponent(String $component = "form", Array $config): void
+	{
+		$component = "View/Components/".$component.".php";
+		if(!file_exists($component)){
+			die("Le composant ".$component." n'existe pas");
+		}
+		include $component;
+	}
 
 
 

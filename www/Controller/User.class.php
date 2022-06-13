@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Core\View;
 use App\Model\User as UserModel;
+use App\Core\Verificator;
+
 
 class User{
 
@@ -13,15 +15,34 @@ class User{
 		//template => front
 
 		$user = new UserModel();
-		//$user->setId(2);
-		$user->setFirstname("Titi");
-		$user->setLastname("SKRZYPCZYK");
-		$user->setEmail("y.skrzypczyk@gmail.com");
-		$user->setPwd("Test1234");
-		$user->save();
+		$registerForm = $user->registerForm();
+		
+
+		if( !empty($_POST) )
+		{
+			$verificator = new Verificator($registerForm, $_POST);
+
+			$configFormErrors = $verificator->getMsg();
+
+			if(empty($configFormErrors)){
+				$user->setFirstname($_POST['firstname']);
+				$user->setLastname($_POST['lastname']);
+				$user->setEmail($_POST['email']);
+				$user->setPwd($_POST['pwd']);
+				$user->setAddress($_POST['address']);
+				$user->save();
+			}
+
+		}
+
+
+
 
 		
+		
 		$v = new View("Auth/Register", "Front");
+		$v->assign("configForm", $registerForm);
+		$v->assign("configFormErrors", $configFormErrors??[]);
 		
 
 	}
