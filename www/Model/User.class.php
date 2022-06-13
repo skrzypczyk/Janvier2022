@@ -7,11 +7,11 @@ use App\Core\DatabaseDriver;
 class User extends DatabaseDriver
 {
 	private $id = null;
-	private $firstname;
-	private $lastname;
-	private $email;
-	private $pwd;
-	private $status = 0;
+	protected $firstname;
+	protected $lastname;
+	protected $email;
+	protected $pwd;
+	protected $status = 0;
 	private $date_created;
 	private $date_updated;
 

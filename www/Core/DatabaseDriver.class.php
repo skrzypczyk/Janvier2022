@@ -10,6 +10,7 @@ abstract class DatabaseDriver
 	abstract public function getId();
 
 	protected $pdo;
+	protected $table;
 
 
 	public function __construct()
@@ -24,13 +25,41 @@ abstract class DatabaseDriver
 		}catch(Exception $e){
 			die("Erreur SQL ".$e->getMessage());
 		}
-		
+
+		$CalledClassExploded = explode("\\", get_called_class());
+		$this->table = strtolower("esgi_".end($CalledClassExploded));
 	}
 
 
 	//Insert et Update
 	public function save() :void
 	{
+
+		$objectVars = get_object_vars($this);
+		$classVars = get_class_vars(get_class());
+		$columns = array_diff_key($objectVars, $classVars);
+
+
+		if(is_null($this->getId())){
+			// INSERT INTO esgi_user (firstname,lastname,email,pwd,status) VALUES (:firstname,:lastname,:email,:pwd,:status) ;
+			$sql = "INSERT INTO ".$this->table. " (".implode(",", array_keys($columns) ) .") VALUES (:".implode(",:", array_keys($columns) ) .") ;";
+		}else{
+
+			foreach($columns as $column=>$value){
+				$sqlUpdate[] = $column."=:".$column;
+			}
+
+			$sql = "UPDATE ".$this->table. " SET  ".implode(",",$sqlUpdate)."  WHERE id=".$this->getId();
+		}
+
+		$queryPrepared = $this->pdo->prepare($sql);
+		$queryPrepared->execute($columns);
+
+
+
 	}
 
 }
+
+
+

@@ -13,7 +13,8 @@ class User{
 		//template => front
 
 		$user = new UserModel();
-		$user->setFirstname("Yves");
+		//$user->setId(2);
+		$user->setFirstname("Titi");
 		$user->setLastname("SKRZYPCZYK");
 		$user->setEmail("y.skrzypczyk@gmail.com");
 		$user->setPwd("Test1234");
